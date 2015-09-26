@@ -1,0 +1,53 @@
+---
+title       : Iris Species Prediction
+subtitle    : A web applet to predict Iris species by metric attributes
+author      : Ronit Rudra
+job         : Budding Data Scientist
+framework   : io2012       # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : []            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+---
+
+## About the Applet
+
+The Iris plant is a type of plant characterized by showy and colorful flowers. This applet was designed to help easily identify the species by relating to the size and shape of the petals and sepals. A very simple prediction model is the backend of this applet and requires the dimensions of the aforementioned petals and sepals. The applet is available [Here](https://ronnie1995.shinyapps.io/simple_prediction) 
+
+--- .class #id 
+
+## The Dataset
+
+The model is trained using `Anderson's Iris data`.
+```{r,echo=FALSE,message=FALSE}
+library(caret)
+str(iris)
+```
+The data has the following characteristics:
+<ul>
+    <li> There are 4 numeric vairables encompassing the sepal and petal dimensions </li>
+    <li> The last variable is the species containing 3 classes namely `Setosa`, `Versicolor` and `Virginica` </li>
+    <li> Each class has 50 instances and will be the output variable </li>
+    <li> The numeric variables will act as the predictors </li>
+</ul>
+
+--- .class #id
+
+## Model
+The `Random Forest` algorithm is used as the prediction model and is perfect for such classification problems.
+```{r,echo=TRUE,warning=FALSE,message=FALSE}
+model <- train(Species~.,data=iris,method="rf")
+model$finalModel
+```
+The model summary reiterates the fact that the errors in classification are in experimental limits.
+
+
+
+
+--- .class #id
+## Where would you use it?
+
+This is a very rudimentary prediction application owing to the lack of large and diverse dataset on the same. A more complex and robust model can be built taking this app as a foundation.
+
+So, If you are in a forest, come across a plant of the Iris family and you have the sudden urge to find out the correct species with no botanist in sight then don't worry. Just whip out your smartphone (provided you get a signal) and click [here](https://ronnie1995.shinyapps.io/simple_prediction)
